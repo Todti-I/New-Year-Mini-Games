@@ -1,0 +1,54 @@
+body {
+    text-align: center;
+}
+
+main {
+    height: 85vh;
+    position: relative;
+    display: inline-block;
+    min-height: 300px;
+}
+
+#tree {
+    height: 100%;
+}
+
+.light {
+    position: absolute;
+    top:0;
+    left:0;
+    border-radius: 50%;
+    height: 5%;
+    width: 6.5%;
+    background-color: maroon;
+    transition-duration: 0.5s;
+}
+
+button.fire {
+    background-color: orange;
+    box-shadow: 0 0 15px 5px yellow;
+    z-index: 5;
+}
+
+button, 
+button:active, 
+button:focus {
+    outline: none;
+}
+
+#b1 { top: 24%;left: 42.5%;}
+#b2 { top: 28.5%;left: 55.5%;}
+#b3 { top:34%;left: 69%;}
+#b4 { top: 34.5%;left: 46.5%;}
+#b5 { top: 40%;left: 37%;}
+#b6 { top: 46%;left: 44.5%;}
+#b7 { top: 52%;left: 33%;}
+#b8 { top: 60.5%;left: 48.5%;}
+#b9 { top: 71%;left: 43.5%;}
+#b10 { top: 73%;left: 29.5%;}
+#b11 { top: 77.8%;left: 33.5%;}
+
+p {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 150%;
+}
