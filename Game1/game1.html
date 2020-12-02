@@ -7,7 +7,7 @@
  </head>
  <body ondragstart="return false">
     <main>
-        <img id='tree' src='Novogodnyaya-elka.jpg'>
+        <img id='tree' src='Novogodnyaya-elka2.png'>
         <button class='light' onclick="change(this);" id='b1'> </button>
         <button class='light' onclick="change(this);" id='b2'> </button>
         <button class='light' onclick="change(this);" id='b3'> </button>
@@ -20,8 +20,11 @@
         <button class='light' onclick="change(this);" id='b10'> </button>
         <button class='light' onclick="change(this);" id='b11'> </button>
     </main>
-    <p id = 'p'>Зажги все огоньки!!!</p>
-    <button onclick="playAgain()"> Начать сначала! </button>
+    <footer>
+        <button onclick="hint()">Хочешь подсказку?</button>
+        <button id = 'pa' onclick="playAgain()"> Cначала? </button>
+        <button>К другим играм</button>
+    </footer>
     <script src="script.js"></script>
  </body>
 </html>

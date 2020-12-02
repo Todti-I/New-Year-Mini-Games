@@ -1,12 +1,21 @@
 body {
     text-align: center;
+    background-image: url('background.jpg');
+    background-size: cover;
 }
 
-main {
-    height: 85vh;
+main{
+    height: 80vh;
     position: relative;
     display: inline-block;
     min-height: 300px;
+}
+
+aside {
+    width: 30%;
+    height: 85vh;
+    display: inline-block;
+    vertical-align: top;
 }
 
 #tree {
@@ -15,8 +24,8 @@ main {
 
 .light {
     position: absolute;
-    top:0;
-    left:0;
+    /*top:0;
+    left:0;*/
     border-radius: 50%;
     height: 5%;
     width: 6.5%;
@@ -48,7 +57,7 @@ button:focus {
 #b10 { top: 73%;left: 29.5%;}
 #b11 { top: 77.8%;left: 33.5%;}
 
-p {
+footer button{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 150%;
 }

@@ -1,6 +1,7 @@
 let lights = [];
 for(let i = 1; i <= 11; i++)
     lights.push('b'+i);
+
 function randomLights() {
     for(let i = 0; i < 11; i++) {
         let pos1 = Math.round(Math.random()*10);
@@ -12,12 +13,14 @@ function randomLights() {
 }
 randomLights();
 
-
-
 let num = 0;
 let won = false;
 let clear;
-let hint = () => lights.join(', ');
+
+function hint() {
+    if(won) alert('Ты уже выиграл!');
+    else change(document.getElementById(lights[num]));
+}
 /**
  * @param {HTMLElement} element
 */
@@ -33,7 +36,7 @@ function change(element) {
         element.classList.add('fire');
         if(lights[num] === id) {
             if(num == 10) {
-                alert('You won!');
+                alert('Ты выиграл!');
                 turnOffAllLights();
                 animTheLights();
                 won = true;
@@ -68,14 +71,10 @@ function animTheLights() {
     clear = setInterval(anim, 3300);
 }
 
-
-
 function playAgain() {
     if(clear) clearInterval(clear);
+    won = false;
     num = 0;
     randomLights();
     turnOffAllLights();
-    document.getElementById('p').textContent = hint();
 }
-
-document.getElementById('p').textContent = hint();
