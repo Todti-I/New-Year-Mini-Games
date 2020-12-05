@@ -1,0 +1,21 @@
+img {
+    width: 100px;
+    margin: 10px;
+    padding: 5px;
+    border-style: ridge;
+    border-radius: 5px;
+    background-color: azure;
+}
+
+.gameBlock {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+
+    /* width: 545px; */
+
+    display: flex;
+    flex-wrap: wrap;
+}
