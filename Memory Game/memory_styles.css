@@ -1,10 +1,31 @@
-img {
+.card {
     width: 100px;
+    height: 100px;
     margin: 10px;
-    padding: 5px;
-    border-style: ridge;
-    border-radius: 5px;
+    
+    /* border-style: ridge; */
+    border-style: solid;
+    border-radius: 25px;
+    border-color: gray;
     background-color: azure;
+
+    transition: transform 1s;
+    transform-style: preserve-3d;
+}
+
+.card.isFlipped {
+    transform: rotateY(180deg);
+}
+
+.cardImage {
+    position: absolute;
+    height: 90%;
+    margin: 5%;
+    backface-visibility: hidden;
+}
+
+.cardImage.back {
+    transform: rotateY(180deg);
 }
 
 .gameBlock {
@@ -13,9 +34,6 @@ img {
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
-
-    /* width: 545px; */
-
     display: flex;
     flex-wrap: wrap;
 }

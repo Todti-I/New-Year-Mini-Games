@@ -22,17 +22,16 @@ const imagePaths =
 
 const imageDefaultPath = 'Images\\default.png';
 
+document.querySelector('html').onselectstart = () => false;
 const gameBlock = document.querySelector('.gameBlock');
-gameBlock.onselectstart = () => false;
-
-const mapImage = new Map();
 
 function startGame() {
     const count = 36;
 
-    gameBlock.style.width = Math.sqrt(count)*136.25+'px';
+    gameBlock.style.width = Math.sqrt(count)*126+'px';
 
     const random = randomNoRepeats(count);
+    const mapImage = new Map();
 
     for (let path of imagePaths) {
         let id1 = random.next().value;
@@ -42,62 +41,70 @@ function startGame() {
         mapImage.set(id2, path)
     }
 
-
     for (let i = 0; i < count; i++) {
-        gameBlock.append(createStartImage(i));
+        gameBlock.append(createCard(mapImage.get(i)));
     }
 }
 
-function createStartImage(id) {
+function createCard(backImagePath) {
+    const div = document.createElement('div');
+    div.className = 'card';
+    div.onclick = () => clickCard(div);
+
     const image = document.createElement('img');
-    image.id = `img_${id}`;
+    image.className = 'cardImage';
     image.src = imageDefaultPath;
     image.ondragstart = () => false;
-    image.onclick = () => clickImage(image);
-    //image.addEventListener('click', () => clickImage(image));
-    return image;
+
+    const backImage = document.createElement('img');
+    backImage.className = 'cardImage back';
+    backImage.src = backImagePath;
+    backImage.ondragstart = () => false;
+    
+    div.append(image);
+    div.append(backImage);
+
+    return div;
 }
 
-let lastImage;
+let lastCard;
 
 let isLock = true;
 
-function clickImage(image) {
-    if (isLock || (lastImage !== undefined && lastImage.id === image.id)) return;
-    const id = parseInt(image.id.split('_')[1]);
-    image.src = mapImage.get(id);
+function clickCard(card) {
+    if (isLock || (lastCard !== undefined && lastCard === card)) return;
+    card.classList.toggle('isFlipped');
 
-    if (lastImage === undefined) {
-        lastImage = image;
+    if (lastCard === undefined) {
+        lastCard = card;
     }
-    else if (lastImage.src !== image.src) {
+    else if (lastCard.lastChild.src !== card.lastChild.src) {
         isLock = true;
         setTimeout(() => {
-            lastImage.src = imageDefaultPath;
-            image.src = imageDefaultPath;
+            lastCard.classList.toggle('isFlipped');
+            card.classList.toggle('isFlipped');
             isLock = false;
-            lastImage = undefined;
-        }, 500);
+            lastCard = undefined;
+        }, 1000);
     }
     else {
-        lastImage.onclick = null;
-        image.onclick = null;
-        lastImage = undefined;
+        lastCard.onclick = null;
+        card.onclick = null;
+        lastCard = undefined;
     }
 }
 
 function showAllImage() {
     isLock = true;
-    const images = gameBlock.querySelectorAll('img');
+    const cards = gameBlock.querySelectorAll('.card');
 
-    for (let image of images) {
-        const id = parseInt(image.id.split('_')[1]);
-                image.src = mapImage.get(id);
+    for (let card of cards) {
+        card.classList.toggle('isFlipped');
     }
 
     setTimeout(() => {
-        for (let image of images) {
-            image.src = imageDefaultPath;
+        for (let card of cards) {
+            card.classList.toggle('isFlipped');
         }
         isLock = false;
     }, 3000);
@@ -118,4 +125,4 @@ function* randomNoRepeats(maxValue) {
 }
 
 startGame();
-showAllImage();
+setTimeout(showAllImage, 1000);
