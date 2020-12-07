@@ -1,14 +1,19 @@
+html {
+    background-image: url('Images/background.jpg');
+    background-color: rgba(32, 50, 88, 0.5);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
 .card {
     width: 100px;
     height: 100px;
     margin: 10px;
-    
-    /* border-style: ridge; */
     border-style: solid;
     border-radius: 25px;
-    border-color: gray;
+    border-color: black;
     background-color: azure;
-
     transition: transform 1s;
     transform-style: preserve-3d;
 }
@@ -29,11 +34,29 @@
 }
 
 .gameBlock {
-    position: absolute;
+    /* position: absolute;
     top: 50%;
     left: 50%;
     margin-right: -50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); */
+    margin-left: auto;
+    margin-right: auto;
     display: flex;
     flex-wrap: wrap;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    /* background-color: teal; */
+    /* background-color: rgba(15, 60, 82, 0.5); */
+    background-color: rgba(32, 50, 88, 0.5);
+    margin: 20px 20px 30px 20px;
+}
+
+.text {
+    margin: 25px;
+    font-size: 50px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: white;
 }

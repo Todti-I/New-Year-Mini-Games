@@ -20,17 +20,41 @@ const imagePaths =
         'Images\\wine.png'
     ];
 
+class Timer {
+    constructor(outputElement) {
+        this.startTime = new Date();
+        this.timer = setInterval(() => {
+            let time = new Date(new Date() - this.startTime);
+            outputElement.textContent = time.getMinutes() + ':'
+                + (time.getSeconds() < 10 ? '0' : '') + time.getSeconds();
+        }, 500);
+    }
+
+    stop() {
+        clearInterval(this.timer);
+        this.stopTime = new Date();
+    }
+}
+
 const imageDefaultPath = 'Images\\default.png';
+
+const countCard = 36;
+
+let timer;
+let successCount = 0;
+let errorCount = 0;
+
+const errorText = document.querySelector('#errorText');
 
 document.querySelector('html').onselectstart = () => false;
 const gameBlock = document.querySelector('.gameBlock');
 
 function startGame() {
-    const count = 36;
+    
 
-    gameBlock.style.width = Math.sqrt(count)*126+'px';
+    gameBlock.style.width = Math.sqrt(countCard) * 126 + 'px';
 
-    const random = randomNoRepeats(count);
+    const random = randomNoRepeats(countCard);
     const mapImage = new Map();
 
     for (let path of imagePaths) {
@@ -41,7 +65,7 @@ function startGame() {
         mapImage.set(id2, path)
     }
 
-    for (let i = 0; i < count; i++) {
+    for (let i = 0; i < countCard; i++) {
         gameBlock.append(createCard(mapImage.get(i)));
     }
 }
@@ -60,7 +84,7 @@ function createCard(backImagePath) {
     backImage.className = 'cardImage back';
     backImage.src = backImagePath;
     backImage.ondragstart = () => false;
-    
+
     div.append(image);
     div.append(backImage);
 
@@ -68,7 +92,6 @@ function createCard(backImagePath) {
 }
 
 let lastCard;
-
 let isLock = true;
 
 function clickCard(card) {
@@ -85,12 +108,18 @@ function clickCard(card) {
             card.classList.toggle('isFlipped');
             isLock = false;
             lastCard = undefined;
+            errorCount++;
+            errorText.textContent = `Ошибки: ${errorCount}`;
         }, 1000);
     }
     else {
         lastCard.onclick = null;
         card.onclick = null;
         lastCard = undefined;
+        successCount++;
+        if (successCount == countCard / 2) {
+            timer.stop();
+        }
     }
 }
 
@@ -107,6 +136,7 @@ function showAllImage() {
             card.classList.toggle('isFlipped');
         }
         isLock = false;
+        timer = new Timer(document.querySelector('#timerText'));
     }, 3000);
 }
 
