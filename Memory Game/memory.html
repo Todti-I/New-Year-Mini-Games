@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html lang="ru">
 
-<img src="Images/background.jpg" style="display: none;" />
-
 <head>
     <meta charset="UTF-8" />
     <title>Игра на запоминание</title>
     <link rel="stylesheet" href="memory_styles.css" />
 </head>
 
-<header>
-    <span class="text" id="errorText">Ошибки: 0</span>
-    <button onclick="console.log('Menu button click')">Меню</button>
-    <button onclick="resetGame()">Рестарт</button>
-    <span class="text right" id="timerText">0:00</span>
-</header>
-
 <body>
+    <img src="Images/background.jpg" style="display: none;" />
+
+    <header>
+        <span class="text" id="errorText">Ошибки: 0</span>
+        <button onclick="console.log('Menu button click')">Меню</button>
+        <button onclick="resetGame()">Рестарт</button>
+        <span class="text right" id="timerText">0:00</span>
+    </header>
+
     <div class="gameBlock"></div>
+
     <dialog id="dialog" onclick="this.close()">
         <h1>Мини-игра пройдена!</h1>
         <h2>Ваш результат</h2>
