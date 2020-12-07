@@ -44,14 +44,21 @@ let timer;
 let successCount = 0;
 let errorCount = 0;
 
+let lastCard;
+let isLock = true;
+
 const errorText = document.querySelector('#errorText');
+const timerText = document.querySelector('#timerText');
+
+const resultTimer = document.querySelector('#resultTimer');
+const resultError = document.querySelector('#resultError');
+
+const dialog = document.querySelector('dialog');
 
 document.querySelector('html').onselectstart = () => false;
 const gameBlock = document.querySelector('.gameBlock');
 
 function startGame() {
-    
-
     gameBlock.style.width = Math.sqrt(countCard) * 126 + 'px';
 
     const random = randomNoRepeats(countCard);
@@ -68,6 +75,8 @@ function startGame() {
     for (let i = 0; i < countCard; i++) {
         gameBlock.append(createCard(mapImage.get(i)));
     }
+
+    setTimeout(showAllImage, 500);
 }
 
 function createCard(backImagePath) {
@@ -90,9 +99,6 @@ function createCard(backImagePath) {
 
     return div;
 }
-
-let lastCard;
-let isLock = true;
 
 function clickCard(card) {
     if (isLock || (lastCard !== undefined && lastCard === card)) return;
@@ -119,6 +125,9 @@ function clickCard(card) {
         successCount++;
         if (successCount == countCard / 2) {
             timer.stop();
+            resultTimer.textContent = timerText.textContent;
+            resultError.textContent = errorCount;
+            setTimeout(() => dialog.showModal(), 500);
         }
     }
 }
@@ -136,8 +145,32 @@ function showAllImage() {
             card.classList.toggle('isFlipped');
         }
         isLock = false;
-        timer = new Timer(document.querySelector('#timerText'));
+        timer = new Timer(timerText);
     }, 3000);
+}
+
+let lastCallReset = new Date();
+
+function resetGame() {
+    let currentCallReset = new Date();
+    if (currentCallReset - lastCallReset < 4000) return;
+    lastCallReset = currentCallReset;
+    errorText.textContent = 'Ошибки: 0';
+    successCount = 0;
+    timerText.textContent = '0:00';
+    errorCount = 0;
+    if (timer !== undefined) {
+        timer.stop();
+    }
+    timer = undefined;
+    
+    lastCard = undefined;
+    isLock = true;
+
+    while (gameBlock.children.length != 0) {
+        gameBlock.removeChild(gameBlock.lastChild);
+    }
+    startGame();
 }
 
 function* randomNoRepeats(maxValue) {
@@ -155,4 +188,3 @@ function* randomNoRepeats(maxValue) {
 }
 
 startGame();
-setTimeout(showAllImage, 1000);
