@@ -1,0 +1,66 @@
+body {
+    text-align: center;
+    background-image: url('background.jpg') ;
+    background-size: cover;
+    /*overflow: hidden;*/
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(32, 50, 88, 0.5);
+    margin: 2% 2% 0;
+}
+
+main{
+    height: 80vh;
+    position: relative;
+    display: inline-block;
+    min-height: 300px;
+}
+
+#tree {
+    height: 100%;
+}
+
+.light {
+    position: absolute;
+    border-radius: 50%;
+    height: 5%;
+    width: 6.5%;
+    background-color: maroon;
+    transition-duration: 0.5s;
+}
+
+button.fire {
+    background-color: orange;
+    box-shadow: 0 0 15px 5px yellow;
+    z-index: 5;
+}
+
+button, 
+button:active, 
+button:focus {
+    outline: none;
+}
+
+#b1 { top: 24%;left: 42.5%;}
+#b2 { top: 28.5%;left: 55.5%;}
+#b3 { top:34%;left: 69%;}
+#b4 { top: 34.5%;left: 46.5%;}
+#b5 { top: 40%;left: 37%;}
+#b6 { top: 46%;left: 44.5%;}
+#b7 { top: 52%;left: 33%;}
+#b8 { top: 60.5%;left: 48.5%;}
+#b9 { top: 71%;left: 43.5%;}
+#b10 { top: 73%;left: 29.5%;}
+#b11 { top: 77.8%;left: 33.5%;}
+
+header button, .text {
+    margin: 2%;
+    padding: 0 1%;
+    font-size: 3vw;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: rgb(20, 35, 68);
+    color: white;
+}
