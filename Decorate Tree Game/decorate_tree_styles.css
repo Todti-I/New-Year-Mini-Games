@@ -1,0 +1,96 @@
+html {
+    background-image: url('Images/background.jpg');
+    background-color: rgba(32, 50, 88, 0.5);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.card {
+    width: 5vmax;
+    height: 5vmax;
+    margin: 0.4vmax;
+    border-style: solid;
+    border-radius: 1vmax;
+    border-color: rgba(32, 50, 88, 0.75);
+    background-color: azure;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+}
+
+.card.isFlipped {
+    transform: rotateY(180deg);
+}
+
+.cardImage {
+    position: absolute;
+    height: 90%;
+    margin: 5%;
+    backface-visibility: hidden;
+}
+
+.cardImage.back {
+    transform: rotateY(180deg);
+}
+
+.gameBlock {    
+    margin-left: auto;
+    margin-right: auto;
+}
+
+td {
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(32, 50, 88, 0.5);
+    margin: 1.05vmax;
+    margin-bottom: 1.25vmax;
+}
+
+.text {
+    font-size: 2.8vmax;
+    margin: 1.3vmax;
+    width: 33%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: white;
+}
+
+.text.center {
+    text-align: center;
+}
+
+.text.right {
+    text-align: right;
+}
+
+button {
+    margin: 1.3vmax;
+    padding: 0 1.5vmax;
+    font-size: 2.6vmax;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: rgb(20, 35, 68);
+    color: white;
+    border-width: 0.1vmax;
+}
+
+dialog::backdrop {
+    background: rgba(22, 21, 21, 0.336);
+}
+
+dialog {
+    width: 30%;
+    padding-bottom: 1vmax;
+    padding-top: 0.2vmax;
+    border-color: rgba(32, 50, 88, 1);
+    background-color: azure;
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 1.25vmax;
+}
+
+dialog p {
+    margin: 0.6vmax 0 0.2vmax 0;
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Игра на запоминание</title>
+    <link rel="stylesheet" href="decorate_tree_styles.css" />
+</head>
+
+<body>
+    <img src="Images/background.jpg" style="display: none;" />
+
+    <header>
+        <span class="text" id="errorText">Ошибки: 0</span>
+        <button onclick="console.log('Menu button click')">Меню</button>
+        <button onclick="resetGame()">Рестарт</button>
+        <span class="text right" id="timerText">0:00</span>
+    </header>
+
+    <table class="gameBlock" cols="6"></table>
+
+    <dialog id="dialog" onclick="this.close()">
+        <h1>Мини-игра пройдена!</h1>
+        <h2>Ваш результат</h2>
+        <p>Время - <span id="resultTimer">00:00</span></p>
+        <p>Количество ошибок - <span id="resultError">0</span></p>
+    </dialog>
+</body>
+
+<!-- <script src="decorate_tree.js"></script> -->
+
+</html>
