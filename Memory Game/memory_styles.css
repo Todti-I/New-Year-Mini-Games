@@ -7,11 +7,11 @@ html {
 }
 
 .card {
-    width: 100px;
-    height: 100px;
-    margin: 10px;
+    width: 5vmax;
+    height: 5vmax;
+    margin: 0.4vmax;
     border-style: solid;
-    border-radius: 25px;
+    border-radius: 1vmax;
     border-color: rgba(32, 50, 88, 0.75);
     background-color: azure;
     transition: transform 1s;
@@ -33,23 +33,26 @@ html {
     transform: rotateY(180deg);
 }
 
-.gameBlock {
+.gameBlock {    
     margin-left: auto;
     margin-right: auto;
-    display: flex;
-    flex-wrap: wrap;
+}
+
+td {
+    padding: 0;
 }
 
 header {
     display: flex;
     justify-content: space-between;
     background-color: rgba(32, 50, 88, 0.5);
-    margin: 20px 20px 30px 20px;
+    margin: 1.05vmax;
+    margin-bottom: 1.25vmax;
 }
 
 .text {
-    font-size: 50px;
-    margin: 25px;
+    font-size: 2.8vmax;
+    margin: 1.3vmax;
     width: 33%;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     color: white;
@@ -64,12 +67,13 @@ header {
 }
 
 button {
-    margin: 25px;
-    padding: 0 15px;
-    font-size: 50px;
+    margin: 1.3vmax;
+    padding: 0 1.5vmax;
+    font-size: 2.6vmax;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background-color: rgb(20, 35, 68);
     color: white;
+    border-width: 0.1vmax;
 }
 
 dialog::backdrop {
@@ -77,16 +81,16 @@ dialog::backdrop {
 }
 
 dialog {
-    width: 20%;
-    position: relative;
-    padding-bottom: 10px;
-    padding-top: 5px;
+    width: 30%;
+    padding-bottom: 1vmax;
+    padding-top: 0.2vmax;
     border-color: rgba(32, 50, 88, 1);
     background-color: azure;
     text-align: center;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 1.25vmax;
 }
 
 dialog p {
-    margin: 15px 0 5px 0;
+    margin: 0.6vmax 0 0.2vmax 0;
 }

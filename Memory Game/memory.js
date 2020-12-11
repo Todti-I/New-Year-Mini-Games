@@ -47,6 +47,8 @@ let errorCount = 0;
 let lastCard;
 let isLock = true;
 
+let lastCallReset = new Date();
+
 const errorText = document.querySelector('#errorText');
 const timerText = document.querySelector('#timerText');
 
@@ -59,8 +61,6 @@ document.querySelector('html').onselectstart = () => false;
 const gameBlock = document.querySelector('.gameBlock');
 
 function startGame() {
-    gameBlock.style.width = Math.sqrt(countCard) * 126 + 'px';
-
     const random = randomNoRepeats(countCard);
     const mapImage = new Map();
 
@@ -72,9 +72,18 @@ function startGame() {
         mapImage.set(id2, path)
     }
 
-    for (let i = 0; i < countCard; i++) {
-        gameBlock.append(createCard(mapImage.get(i)));
+    let currentPosition = 0;
+    for (let i = 0; i < Math.sqrt(countCard); i++) {
+        const row = document.createElement('tr');
+        for (let j = 0; j < Math.sqrt(countCard); j++) {
+            const td = document.createElement('td');
+            td.append(createCard(mapImage.get(currentPosition)));
+            row.append(td);
+            currentPosition++;
+        }
+        gameBlock.append(row);
     }
+
 
     setTimeout(showAllImage, 500);
 }
@@ -149,21 +158,20 @@ function showAllImage() {
     }, 3000);
 }
 
-let lastCallReset = new Date();
-
 function resetGame() {
     let currentCallReset = new Date();
     if (currentCallReset - lastCallReset < 4000) return;
-    lastCallReset = currentCallReset;
+
     errorText.textContent = 'Ошибки: 0';
-    successCount = 0;
     timerText.textContent = '0:00';
+
+    lastCallReset = currentCallReset;
     errorCount = 0;
+    successCount = 0;
     if (timer !== undefined) {
         timer.stop();
     }
     timer = undefined;
-    
     lastCard = undefined;
     isLock = true;
 
