@@ -6,42 +6,6 @@ html {
     background-attachment: fixed;
 }
 
-.card {
-    width: 5vmax;
-    height: 5vmax;
-    margin: 0.4vmax;
-    border-style: solid;
-    border-radius: 1vmax;
-    border-color: rgba(32, 50, 88, 0.75);
-    background-color: azure;
-    transition: transform 1s;
-    transform-style: preserve-3d;
-}
-
-.card.isFlipped {
-    transform: rotateY(180deg);
-}
-
-.cardImage {
-    position: absolute;
-    height: 90%;
-    margin: 5%;
-    backface-visibility: hidden;
-}
-
-.cardImage.back {
-    transform: rotateY(180deg);
-}
-
-.gameBlock {    
-    margin-left: auto;
-    margin-right: auto;
-}
-
-td {
-    padding: 0;
-}
-
 header {
     display: flex;
     justify-content: space-between;
@@ -50,7 +14,7 @@ header {
     margin-bottom: 1.25vmax;
 }
 
-.text {
+.textHeader {
     font-size: 2.8vmax;
     margin: 1.3vmax;
     width: 33%;
@@ -58,15 +22,15 @@ header {
     color: white;
 }
 
-.text.center {
+.textHeader.center {
     text-align: center;
 }
 
-.text.right {
+.textHeader.right {
     text-align: right;
 }
 
-button {
+.buttonHeader {
     margin: 1.3vmax;
     padding: 0 1.5vmax;
     font-size: 2.6vmax;
@@ -74,10 +38,6 @@ button {
     background-color: rgb(20, 35, 68);
     color: white;
     border-width: 0.1vmax;
-}
-
-dialog::backdrop {
-    background: rgba(22, 21, 21, 0.336);
 }
 
 dialog {
@@ -91,6 +51,146 @@ dialog {
     font-size: 1.25vmax;
 }
 
+dialog::backdrop {
+    background: rgba(22, 21, 21, 0.336);
+}
+
 dialog p {
     margin: 0.6vmax 0 0.2vmax 0;
+}
+
+.gameBlock {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+}
+
+.gameButton {
+    width: 5vmax;
+    height: 3.8vmax;
+    background: none;
+    border-color: rgba(0, 0, 0, 0);
+    border-width: 0.2vmax;
+}
+
+.gameButton:focus {
+    outline: none;
+}
+
+.gameButton:hover {
+    border-color: rgba(20, 31, 54, 0.75);
+}
+
+.gameButton.left {
+    background-image: url(Images/arrowLeft.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.gameButton.right {
+    background-image: url(Images/arrowRight.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.cardObject {
+    width: 5vmax;
+    height: 5vmax;
+    margin: 1vmax;
+    border-style: solid;
+    border-radius: 1vmax;
+    border-color: rgba(20, 31, 54, 0.75);
+    background-color: rgba(60, 93, 165, 0.75);
+}
+
+.imageObject {
+    width: 80%;
+    margin: 10%;
+}
+
+.basket {
+    position: absolute;
+    top: 70%;
+    left: 70%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    width: 10vmax;
+}
+
+.tree {
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+
+    width: 25vmax;
+    height: 36vmax;
+    background-image: url(Images/tree.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.toy {
+    position: absolute;
+    width: 3.75vmax;
+}
+
+#pos0 {
+    left: 15%;
+    top: 82%;
+}
+
+#pos1 {
+    left: 60%;
+    top: 75%;
+}
+
+#pos2 {
+    left: 35%;
+    top: 75%;
+}
+
+#pos3 {
+    left: 25%;
+    top: 60%;
+}
+
+#pos4 {
+    left: 55%;
+    top: 60%;
+}
+
+#pos5 {
+    left: 30%;
+    top: 43%;
+}
+
+#pos6 {
+    left: 55%;
+    top: 45%;
+}
+
+#pos7 {
+    left: 50%;
+    top: 32%;
+}
+
+#pos8 {
+    left: 35%;
+    top: 27%;
+}
+
+#pos9 {
+    left: 45%;
+    top: 17%;
+}
+
+#pos10 {
+    left: 43%;
+    top: 5%;
 }

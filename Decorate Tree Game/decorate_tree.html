@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" onselectstart="return false;">
 
 <head>
     <meta charset="UTF-8" />
-    <title>Игра на запоминание</title>
+    <title>Украшаем елку</title>
     <link rel="stylesheet" href="decorate_tree_styles.css" />
 </head>
 
@@ -11,13 +11,36 @@
     <img src="Images/background.jpg" style="display: none;" />
 
     <header>
-        <span class="text" id="errorText">Ошибки: 0</span>
-        <button onclick="console.log('Menu button click')">Меню</button>
-        <button onclick="resetGame()">Рестарт</button>
-        <span class="text right" id="timerText">0:00</span>
+        <span class="textHeader" id="errorText">Ошибки: 0</span>
+        <button class="buttonHeader" onclick="console.log('Menu button click')">Меню</button>
+        <button class="buttonHeader" onclick="resetGame()">Рестарт</button>
+        <span class="textHeader right" id="timerText">0:00</span>
     </header>
 
-    <table class="gameBlock" cols="6"></table>
+
+    <div class="tree">
+        <img id="pos0" class="toy" src="Images//default.png" ondragstart="return false;">
+        <img id="pos1" class="toy" src="Images//default.png" ondragstart="return false;">
+        <img id="pos2" class="toy" src="Images//default.png" ondragstart="return false;">
+        <img id="pos3" class="toy" src="Images//default.png" ondragstart="return false;">
+        <img id="pos4" class="toy" src="Images//default.png" ondragstart="return false;">
+        <img id="pos5" class="toy" src="Images//default.png" ondragstart="return false;">
+        <img id="pos6" class="toy" src="Images//default.png" ondragstart="return false;">
+        <img id="pos7" class="toy" src="Images//default.png" ondragstart="return false;">
+        <img id="pos8" class="toy" src="Images//default.png" ondragstart="return false;">
+        <img id="pos9" class="toy" src="Images//default.png" ondragstart="return false;">
+        <img id="pos10" class="toy" src="Images//default.png" ondragstart="return false;">
+    </div>
+
+    <div class="gameBlock">
+        <button class="gameButton left" onclick="clickTrue()"></button>
+        <div class="cardObject">
+            <img class="imageObject" src="Images/default.png" ondragstart="return false;">
+        </div>
+        <button class="gameButton right" onclick="clickFalse()"></button>
+    </div>
+
+    <img class="basket" src="Images//basket.png" ondragstart="return false;">
 
     <dialog id="dialog" onclick="this.close()">
         <h1>Мини-игра пройдена!</h1>
@@ -27,6 +50,6 @@
     </dialog>
 </body>
 
-<!-- <script src="decorate_tree.js"></script> -->
+<script src="decorate_tree.js"></script>
 
 </html>

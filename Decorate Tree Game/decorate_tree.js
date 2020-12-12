@@ -1,23 +1,21 @@
-const imagePaths =
+const imageToyPaths =
     [
-        'Images\\bauble.png',
-        'Images\\bells.png',
-        'Images\\candy-cane.png',
-        'Images\\christmas-pudding.png',
-        'Images\\christmas-tree.png',
-        'Images\\fireplace.png',
-        'Images\\holly.png',
-        'Images\\jingle-bell.png',
-        'Images\\mail.png',
-        'Images\\present.png',
-        'Images\\reindeer.png',
-        'Images\\santa-sleigh.png',
-        'Images\\santa.png',
-        'Images\\snowflake.png',
-        'Images\\snowman.png',
-        'Images\\stocking.png',
-        'Images\\toy-train.png',
-        'Images\\wine.png'
+        'Images\\ball_1.png',
+        'Images\\ball_2.png',
+        'Images\\ball_3.png',
+        'Images\\ball_4.png',
+        'Images\\ball_5.png',
+        'Images\\bell.png',
+        'Images\\sock.png',
+        'Images\\wand.png',
+    ];
+
+const imageStarPath = 'Images\\star.png';
+const imageDefaultPath = 'Images\\default.png';
+
+const imageTrashPaths =
+    [
+        'Images\\trash_0.png',
     ];
 
 class Timer {
@@ -36,15 +34,15 @@ class Timer {
     }
 }
 
-const imageDefaultPath = 'Images\\default.png';
-
-const countCard = 36;
+function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+}
 
 let timer;
 let successCount = 0;
 let errorCount = 0;
 
-let lastCard;
+let isTrash;
 let isLock = true;
 
 let lastCallReset = new Date();
@@ -57,115 +55,22 @@ const resultError = document.querySelector('#resultError');
 
 const dialog = document.querySelector('dialog');
 
-document.querySelector('html').onselectstart = () => false;
+document.querySelector('html').addEventListener('keyup', keyPress);
 const gameBlock = document.querySelector('.gameBlock');
-
-function startGame() {
-    const random = randomNoRepeats(countCard);
-    const mapImage = new Map();
-
-    for (let path of imagePaths) {
-        let id1 = random.next().value;
-        let id2 = random.next().value;
-        if (id1 === undefined || id2 === undefined) break;
-        mapImage.set(id1, path)
-        mapImage.set(id2, path)
-    }
-
-    let currentPosition = 0;
-    for (let i = 0; i < Math.sqrt(countCard); i++) {
-        const row = document.createElement('tr');
-        for (let j = 0; j < Math.sqrt(countCard); j++) {
-            const td = document.createElement('td');
-            td.append(createCard(mapImage.get(currentPosition)));
-            row.append(td);
-            currentPosition++;
-        }
-        gameBlock.append(row);
-    }
-
-
-    setTimeout(showAllImage, 500);
-}
-
-function createCard(backImagePath) {
-    const div = document.createElement('div');
-    div.className = 'card';
-    div.onclick = () => clickCard(div);
-
-    const image = document.createElement('img');
-    image.className = 'cardImage';
-    image.src = imageDefaultPath;
-    image.ondragstart = () => false;
-
-    const backImage = document.createElement('img');
-    backImage.className = 'cardImage back';
-    backImage.src = backImagePath;
-    backImage.ondragstart = () => false;
-
-    div.append(image);
-    div.append(backImage);
-
-    return div;
-}
-
-function clickCard(card) {
-    if (isLock || (lastCard !== undefined && lastCard === card)) return;
-    card.classList.toggle('isFlipped');
-
-    if (lastCard === undefined) {
-        lastCard = card;
-    }
-    else if (lastCard.lastChild.src !== card.lastChild.src) {
-        isLock = true;
-        setTimeout(() => {
-            lastCard.classList.toggle('isFlipped');
-            card.classList.toggle('isFlipped');
-            isLock = false;
-            lastCard = undefined;
-            errorCount++;
-            errorText.textContent = `Ошибки: ${errorCount}`;
-        }, 1000);
-    }
-    else {
-        lastCard.onclick = null;
-        card.onclick = null;
-        lastCard = undefined;
-        successCount++;
-        if (successCount == countCard / 2) {
-            timer.stop();
-            resultTimer.textContent = timerText.textContent;
-            resultError.textContent = errorCount;
-            setTimeout(() => dialog.showModal(), 500);
-        }
-    }
-}
-
-function showAllImage() {
-    isLock = true;
-    const cards = gameBlock.querySelectorAll('.card');
-
-    for (let card of cards) {
-        card.classList.toggle('isFlipped');
-    }
-
-    setTimeout(() => {
-        for (let card of cards) {
-            card.classList.toggle('isFlipped');
-        }
-        isLock = false;
-        timer = new Timer(timerText);
-    }, 3000);
-}
+const imageObject = gameBlock.querySelector('.imageObject');
 
 function resetGame() {
     let currentCallReset = new Date();
-    if (currentCallReset - lastCallReset < 4000) return;
+    if (currentCallReset - lastCallReset < 100) return;
+    lastCallReset = currentCallReset;
 
     errorText.textContent = 'Ошибки: 0';
     timerText.textContent = '0:00';
 
-    lastCallReset = currentCallReset;
+    for (let toy of document.querySelectorAll('.toy')) {
+        toy.src = imageDefaultPath;
+    }
+
     errorCount = 0;
     successCount = 0;
     if (timer !== undefined) {
@@ -175,24 +80,69 @@ function resetGame() {
     lastCard = undefined;
     isLock = true;
 
-    while (gameBlock.children.length != 0) {
-        gameBlock.removeChild(gameBlock.lastChild);
-    }
     startGame();
 }
 
-function* randomNoRepeats(maxValue) {
-    let array = [];
+function startGame() {
+    timer = new Timer(timerText);
+    nextImageObject();
+}
 
-    for (let i = 0; i < maxValue; i++) {
-        array.push(i);
+function nextImageObject() {
+    isLock = true;
+    if (getRandomInt(100) < 50) {
+        isTrash = false;
+        imageObject.src = successCount == 10 ? imageStarPath : imageToyPaths[getRandomInt(imageToyPaths.length)];
     }
-
-    let length = array.length;
-
-    while (length--) {
-        yield array.splice(Math.floor(Math.random() * (length + 1)), 1)[0];
+    else {
+        isTrash = true;
+        imageObject.src = imageTrashPaths[getRandomInt(imageTrashPaths.length)];
     }
+    isLock = false;
+}
+
+function clickTrue() {
+    if (isLock) return;
+    if (isTrash) {
+        errorCount++;
+        errorText.textContent = `Ошибки: ${errorCount}`;
+    }
+    else {
+        document.querySelector('#pos' + successCount).src = imageObject.src;
+        successCount++;
+
+    }
+    if (successCount > 10) {
+        endGame();
+    }
+    else nextImageObject();
+}
+
+function clickFalse() {
+    if (isLock) return;
+    if (!isTrash) {
+        errorCount++;
+        errorText.textContent = `Ошибки: ${errorCount}`;
+    }
+    nextImageObject();
+}
+
+function keyPress(e) {
+    if (e.code === 'ArrowLeft' || e.code === 'KeyA') {
+        clickTrue();
+    }
+    if (e.code === 'ArrowRight' || e.code === 'KeyD') {
+        clickFalse();
+    }
+}
+
+function endGame() {
+    timer.stop();
+    isLock = true;
+    imageObject.src = imageDefaultPath;
+    resultTimer.textContent = timerText.textContent;
+    resultError.textContent = errorCount;
+    setTimeout(() => dialog.showModal(), 500);
 }
 
 startGame();
