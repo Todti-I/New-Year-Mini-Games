@@ -71,13 +71,16 @@ function drawLabyrinth(canvas) {
     let context = canvas.getContext('2d');
     context.clearRect(0,0,canvas.width,canvas.height);
     context.beginPath();
-    context.fillStyle = 'black';
     let cellWidth = canvas.width / width;
     let cellHeight = canvas.height / height;
-    for(let y = 0; y < height; y++)
+    //document.getElementById('leaves').addEventListener('load', draw);
+    //function draw() {
+        for(let y = 0; y < height; y++)
         for(let x = 0; x < width; x++)
             if(maze[y][x].isWall)
                 context.drawImage(leaves, x * cellWidth, y * cellHeight, cellWidth, cellHeight);
+    //};
+    //draw();
     context.stroke();
     context.closePath();
 }
@@ -122,8 +125,6 @@ function makeStep(event) {
         let currentPos = {x: parseFloat(star.style.left), y: parseFloat(star.style.top)};
         let next = {x: starPos.x / width * 100, y : starPos.y / height * 100};
         let dxdy = {x: (next.x - currentPos.x)/15, y: (next.y - currentPos.y)/15 };
-        //alert(currentPos.x + " " + currentPos.y);
-        //alert(next.x + " " + next.y);
         intervalId = setInterval(() => {
             if(Math.abs(currentPos.x - next.x) < 0.01 && Math.abs(currentPos.y - next.y) < 0.01) {
                 clearInterval(intervalId);
@@ -142,7 +143,7 @@ function makeStep(event) {
                 timer.stop();
                 star.classList.add('starWin');
                 star.style.left = '44.5%';
-                star.style.right = '0%';
+                star.style.top = '1.5%';
                 resultTimer.textContent = timerText.textContent;
                 resultError.textContent = errorText.textContent;
                 labyrinth.classList.add('hidden');
@@ -150,7 +151,7 @@ function makeStep(event) {
     }
 }
 
-document.body.addEventListener('keydown', makeStep);
+document.body.addEventListener('keydown', (e) => { makeStep(e); e.preventDefault(); });
 
 function playAgain() {
     if(timer)
@@ -167,7 +168,10 @@ function playAgain() {
     star.style.left = (starPos.x / width)*100 + "%";
     star.style.top = (starPos.y / height)*100 + "%";
     fillLabyrinth();
-    drawLabyrinth(document.getElementById('labyrinth'));
+    setTimeout(() => drawLabyrinth(document.getElementById('labyrinth')), 10);
 }
 
 playAgain();
+
+document.onselectstart = () => false;
+document.ondragstart = () => false;

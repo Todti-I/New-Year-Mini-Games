@@ -69,7 +69,6 @@ img.starWin#star {
     transition-duration: 1s;
     content: url("звездочка2.png");
     width: 15%;
-    box-shadow: 0 0 100px 3px rgba(255, 255, 0, 0.7), 0 0 20px 3px rgba(255, 255, 0, 0.2) inset;
 }
 
 .hidden#labyrinth {
