@@ -1,3 +1,8 @@
+document.querySelector('#menuButton').addEventListener('click', () => {
+    const mainPath = window.location.href.split('/').slice(0, -2).join('/');
+    window.location.replace(`${mainPath}/index.html`);
+});
+
 let lights = [];
 for(let i = 1; i <= 11; i++)
     lights.push('b'+i);

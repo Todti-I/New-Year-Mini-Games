@@ -1,3 +1,8 @@
+document.querySelector('#menuButton').addEventListener('click', () => {
+    const mainPath = window.location.href.split('/').slice(0, -2).join('/');
+    window.location.replace(`${mainPath}/index.html`);
+});
+
 const imageToyPaths =
     [
         'Images\\ball_1.png',

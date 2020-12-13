@@ -20,10 +20,9 @@ header {
 
 .buttonHeader {
     margin: 1.3vmax;
-    /* padding: 0 1.5vmax; */
     width: 10vmax;
     height: 10vmax;
-    font-size: 2.6vmax;
+    font-size: xx-large;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background-color: rgb(20, 35, 68);
     color: white;

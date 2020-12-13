@@ -1,3 +1,8 @@
+document.querySelector('#menuButton').addEventListener('click', () => {
+    const mainPath = window.location.href.split('/').slice(0, -2).join('/');
+    window.location.replace(`${mainPath}/index.html`);
+});
+
 class Timer {
     constructor(outputElement) {
         this.startTime = new Date();
