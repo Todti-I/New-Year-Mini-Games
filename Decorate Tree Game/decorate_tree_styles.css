@@ -67,11 +67,13 @@ dialog p {
     transform: translate(-50%, -50%);
     display: flex;
     align-items: center;
+    flex-direction: column;
 }
 
 .gameButton {
     width: 5vmax;
     height: 3.8vmax;
+    margin: 0 1vmax;
     background: none;
     border-color: rgba(0, 0, 0, 0);
     border-width: 0.2vmax;
@@ -98,23 +100,69 @@ dialog p {
 }
 
 .cardObject {
-    width: 5vmax;
-    height: 5vmax;
+    width: 10vmax;
+    height: 10vmax;
     margin: 1vmax;
     border-style: solid;
-    border-radius: 1vmax;
+    border-radius: 2vmax;
     border-color: rgba(20, 31, 54, 0.75);
     background-color: rgba(60, 93, 165, 0.75);
 }
 
 .imageObject {
-    width: 80%;
-    margin: 10%;
+    position: absolute;
+    width: 7vmax;
+    margin: 1.5vmax;
 }
 
-.basket {
+.imageObject.left {
+    animation: 1s linear swipeLeft 1;
+}
+
+.imageObject.right {
+    animation: 1s linear swipeRight 1;
+}
+
+.imageObject.top {
+    animation: 1s linear swipeTop 1;
+}
+
+@keyframes swipeLeft {
+    0% {
+        opacity: 0.7;
+    }
+    100% {
+        margin-left: -50%;
+        opacity: 0;
+        transform: scale(0.7);
+    }
+}
+
+@keyframes swipeRight {
+    0% {
+        opacity: 0.7;
+    }
+    100% {
+        margin-left: 50%;
+        opacity: 0;
+        transform: scale(0.7);
+    }
+}
+
+@keyframes swipeTop {
+    0% {
+        opacity: 0.7;
+    }
+    100% {
+        margin-top: -50%;
+        opacity: 0;
+        transform: scale(0.7);
+    }
+}
+
+.box {
     position: absolute;
-    top: 70%;
+    top: 60%;
     left: 70%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
@@ -127,7 +175,6 @@ dialog p {
     left: 25%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
-
     width: 25vmax;
     height: 36vmax;
     background-image: url(Images/tree.png);
@@ -137,7 +184,41 @@ dialog p {
 
 .toy {
     position: absolute;
-    width: 3.75vmax;
+    width: 3.4vmax;
+    animation: 0.5s linear appearance 1;
+}
+
+@keyframes appearance {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes swing {
+    25% {
+        transform: rotate(5deg);
+    }
+    50% {
+        transform: rotate(0deg);
+    }
+    75% {
+        transform: rotate(-5deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes resize {
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 #pos0 {
@@ -193,4 +274,5 @@ dialog p {
 #pos10 {
     left: 43%;
     top: 5%;
+    width: 4vmax;
 }

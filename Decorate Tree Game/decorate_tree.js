@@ -4,19 +4,18 @@ const imageToyPaths =
         'Images\\ball_2.png',
         'Images\\ball_3.png',
         'Images\\ball_4.png',
-        'Images\\ball_5.png',
         'Images\\bell.png',
         'Images\\sock.png',
-        'Images\\wand.png',
+        'Images\\wreath.png',
     ];
 
 const imageStarPath = 'Images\\star.png';
 const imageDefaultPath = 'Images\\default.png';
 
-const imageTrashPaths =
-    [
-        'Images\\trash_0.png',
-    ];
+const imageTrashPaths = [];
+for (let i = 0; i < 26; i++) {
+    imageTrashPaths.push(`Images\\trash_${i}.png`);
+}
 
 class Timer {
     constructor(outputElement) {
@@ -57,7 +56,9 @@ const dialog = document.querySelector('dialog');
 
 document.querySelector('html').addEventListener('keyup', keyPress);
 const gameBlock = document.querySelector('.gameBlock');
+const cardObject = gameBlock.querySelector('.cardObject');
 const imageObject = gameBlock.querySelector('.imageObject');
+const tree = document.querySelector('.tree');
 
 function resetGame() {
     let currentCallReset = new Date();
@@ -77,7 +78,6 @@ function resetGame() {
         timer.stop();
     }
     timer = undefined;
-    lastCard = undefined;
     isLock = true;
 
     startGame();
@@ -103,28 +103,60 @@ function nextImageObject() {
 
 function clickTrue() {
     if (isLock) return;
+    isLock = true;
     if (isTrash) {
         errorCount++;
         errorText.textContent = `Ошибки: ${errorCount}`;
+        playAnimationSwipe('top');
     }
     else {
-        document.querySelector('#pos' + successCount).src = imageObject.src;
-        successCount++;
 
+        const copySrc = Object.assign(imageObject.src);
+        const copyCount = successCount;
+        successCount++;
+        setTimeout(() => {
+            tree.append(createImageToy(copyCount, copySrc));
+        }, 900);
+        playAnimationSwipe('left');
     }
     if (successCount > 10) {
         endGame();
     }
-    else nextImageObject();
+    else {
+        nextImageObject();
+        isLock = false;
+    }
+}
+
+function createImageToy(position, src) {
+    const img = document.createElement('img');
+    img.src = src;
+    img.id = `pos${position}`;
+    img.className = 'toy';
+    img.addEventListener('dragstart', () => false);
+    return img;
 }
 
 function clickFalse() {
     if (isLock) return;
+    isLock = true;
     if (!isTrash) {
         errorCount++;
         errorText.textContent = `Ошибки: ${errorCount}`;
+        playAnimationSwipe('top');
     }
+    else playAnimationSwipe('right');
+    isLock = false;
     nextImageObject();
+}
+
+function playAnimationSwipe(name) {
+    const copyImageObject = imageObject.cloneNode();
+    cardObject.append(copyImageObject);
+    copyImageObject.classList.toggle(name);
+    setTimeout(() => {
+        cardObject.removeChild(copyImageObject);
+    }, 900);
 }
 
 function keyPress(e) {
@@ -142,7 +174,7 @@ function endGame() {
     imageObject.src = imageDefaultPath;
     resultTimer.textContent = timerText.textContent;
     resultError.textContent = errorCount;
-    setTimeout(() => dialog.showModal(), 500);
+    setTimeout(() => dialog.showModal(), 1000);
 }
 
 startGame();

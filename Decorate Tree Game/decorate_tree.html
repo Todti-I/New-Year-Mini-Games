@@ -18,29 +18,19 @@
     </header>
 
 
-    <div class="tree">
-        <img id="pos0" class="toy" src="Images//default.png" ondragstart="return false;">
-        <img id="pos1" class="toy" src="Images//default.png" ondragstart="return false;">
-        <img id="pos2" class="toy" src="Images//default.png" ondragstart="return false;">
-        <img id="pos3" class="toy" src="Images//default.png" ondragstart="return false;">
-        <img id="pos4" class="toy" src="Images//default.png" ondragstart="return false;">
-        <img id="pos5" class="toy" src="Images//default.png" ondragstart="return false;">
-        <img id="pos6" class="toy" src="Images//default.png" ondragstart="return false;">
-        <img id="pos7" class="toy" src="Images//default.png" ondragstart="return false;">
-        <img id="pos8" class="toy" src="Images//default.png" ondragstart="return false;">
-        <img id="pos9" class="toy" src="Images//default.png" ondragstart="return false;">
-        <img id="pos10" class="toy" src="Images//default.png" ondragstart="return false;">
-    </div>
+    <div class="tree"></div>
 
     <div class="gameBlock">
-        <button class="gameButton left" onclick="clickTrue()"></button>
         <div class="cardObject">
             <img class="imageObject" src="Images/default.png" ondragstart="return false;">
         </div>
-        <button class="gameButton right" onclick="clickFalse()"></button>
+        <div>
+            <button class="gameButton left" onclick="clickTrue()"></button>
+            <button class="gameButton right" onclick="clickFalse()"></button>
+        </div>
     </div>
 
-    <img class="basket" src="Images//basket.png" ondragstart="return false;">
+    <img class="box" src="Images//box.png" ondragstart="return false;">
 
     <dialog id="dialog" onclick="this.close()">
         <h1>Мини-игра пройдена!</h1>
