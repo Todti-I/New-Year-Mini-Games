@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru" onselectstart="return false;">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Украшаем елку</title>
+    <link rel="stylesheet" href="decorate_tree_styles.css" />
+</head>
+
+<body>
+    <img src="Images/background.jpg" style="display: none;" />
+
+    <header>
+        <span class="textHeader" id="errorText">Ошибки: 0</span>
+        <button class="buttonHeader" onclick="console.log('Menu button click')">Меню</button>
+        <button class="buttonHeader" onclick="resetGame()">Рестарт</button>
+        <span class="textHeader right" id="timerText">0:00</span>
+    </header>
+
+
+    <div class="tree"></div>
+
+    <div class="gameBlock">
+        <div class="cardObject">
+            <img class="imageObject" src="Images/default.png" ondragstart="return false;">
+        </div>
+        <div>
+            <button class="gameButton left" onclick="clickTrue()"></button>
+            <button class="gameButton right" onclick="clickFalse()"></button>
+        </div>
+    </div>
+
+    <img class="box" src="Images//box.png" ondragstart="return false;">
+
+    <dialog id="dialog" onclick="this.close()">
+        <h1>Мини-игра пройдена!</h1>
+        <h2>Ваш результат</h2>
+        <p>Время - <span id="resultTimer">00:00</span></p>
+        <p>Количество ошибок - <span id="resultError">0</span></p>
+    </dialog>
+</body>
+
+<script src="decorate_tree.js"></script>
+
+</html>

@@ -1,0 +1,278 @@
+html {
+    background-image: url('Images/background.jpg');
+    background-color: rgba(32, 50, 88, 0.5);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(32, 50, 88, 0.5);
+    margin: 1.05vmax;
+    margin-bottom: 1.25vmax;
+}
+
+.textHeader {
+    font-size: 2.8vmax;
+    margin: 1.3vmax;
+    width: 33%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: white;
+}
+
+.textHeader.center {
+    text-align: center;
+}
+
+.textHeader.right {
+    text-align: right;
+}
+
+.buttonHeader {
+    margin: 1.3vmax;
+    padding: 0 1.5vmax;
+    font-size: 2.6vmax;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: rgb(20, 35, 68);
+    color: white;
+    border-width: 0.1vmax;
+}
+
+dialog {
+    width: 30%;
+    padding-bottom: 1vmax;
+    padding-top: 0.2vmax;
+    border-color: rgba(32, 50, 88, 1);
+    background-color: azure;
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 1.25vmax;
+}
+
+dialog::backdrop {
+    background: rgba(22, 21, 21, 0.336);
+}
+
+dialog p {
+    margin: 0.6vmax 0 0.2vmax 0;
+}
+
+.gameBlock {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.gameButton {
+    width: 5vmax;
+    height: 3.8vmax;
+    margin: 0 1vmax;
+    background: none;
+    border-color: rgba(0, 0, 0, 0);
+    border-width: 0.2vmax;
+}
+
+.gameButton:focus {
+    outline: none;
+}
+
+.gameButton:hover {
+    border-color: rgba(20, 31, 54, 0.75);
+}
+
+.gameButton.left {
+    background-image: url(Images/arrowLeft.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.gameButton.right {
+    background-image: url(Images/arrowRight.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.cardObject {
+    width: 10vmax;
+    height: 10vmax;
+    margin: 1vmax;
+    border-style: solid;
+    border-radius: 2vmax;
+    border-color: rgba(20, 31, 54, 0.75);
+    background-color: rgba(60, 93, 165, 0.75);
+}
+
+.imageObject {
+    position: absolute;
+    width: 7vmax;
+    margin: 1.5vmax;
+}
+
+.imageObject.left {
+    animation: 1s linear swipeLeft 1;
+}
+
+.imageObject.right {
+    animation: 1s linear swipeRight 1;
+}
+
+.imageObject.top {
+    animation: 1s linear swipeTop 1;
+}
+
+@keyframes swipeLeft {
+    0% {
+        opacity: 0.7;
+    }
+    100% {
+        margin-left: -50%;
+        opacity: 0;
+        transform: scale(0.7);
+    }
+}
+
+@keyframes swipeRight {
+    0% {
+        opacity: 0.7;
+    }
+    100% {
+        margin-left: 50%;
+        opacity: 0;
+        transform: scale(0.7);
+    }
+}
+
+@keyframes swipeTop {
+    0% {
+        opacity: 0.7;
+    }
+    100% {
+        margin-top: -50%;
+        opacity: 0;
+        transform: scale(0.7);
+    }
+}
+
+.box {
+    position: absolute;
+    top: 60%;
+    left: 70%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    width: 10vmax;
+}
+
+.tree {
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    width: 25vmax;
+    height: 36vmax;
+    background-image: url(Images/tree.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.toy {
+    position: absolute;
+    width: 3.4vmax;
+    animation: 0.5s linear appearance 1;
+}
+
+@keyframes appearance {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes swing {
+    25% {
+        transform: rotate(5deg);
+    }
+    50% {
+        transform: rotate(0deg);
+    }
+    75% {
+        transform: rotate(-5deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes resize {
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+#pos0 {
+    left: 15%;
+    top: 82%;
+}
+
+#pos1 {
+    left: 60%;
+    top: 75%;
+}
+
+#pos2 {
+    left: 35%;
+    top: 75%;
+}
+
+#pos3 {
+    left: 25%;
+    top: 60%;
+}
+
+#pos4 {
+    left: 55%;
+    top: 60%;
+}
+
+#pos5 {
+    left: 30%;
+    top: 43%;
+}
+
+#pos6 {
+    left: 55%;
+    top: 45%;
+}
+
+#pos7 {
+    left: 50%;
+    top: 32%;
+}
+
+#pos8 {
+    left: 35%;
+    top: 27%;
+}
+
+#pos9 {
+    left: 45%;
+    top: 17%;
+}
+
+#pos10 {
+    left: 43%;
+    top: 5%;
+    width: 4vmax;
+}
