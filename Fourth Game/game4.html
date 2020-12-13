@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <link rel='stylesheet' href="styles.css">
+  <title>Зажги все огоньки!</title>
+ </head>
+ <body  ondragstart="return false;">
+    <img id='leaves' src="листва.png" hidden>
+    <header>
+        <span class="text" id="errorText">Ходов: 0</span>
+        <button onclick="">Меню</button>
+        <button onclick="playAgain();">Рестарт</button>
+        <span class="text right" id="timerText">0:00</span>
+    </header>
+    
+    <main>
+        <img id='star' src="звездочка1.png">
+        <img id='tree' src='Novogodnyaya-elka.png'>
+        <canvas id='labyrinth'></canvas>
+    </main>
+
+    <dialog id="dialog" onclick="this.close()">
+        <h1>Мини-игра пройдена!</h1>
+        <h2>Ваш результат</h2>
+        <p><span id="resultTimer"></span></p>
+        <p><span id="resultError"></span></p>
+    </dialog>
+    <script src="script.js"></script>
+ </body>
+</html>
