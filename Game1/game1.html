@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <link rel='stylesheet' href="styles.css">
+  <title>Зажги все огоньки!</title>
+ </head>
+ <body ondragstart="return false;">
+    <header>
+        <span class="text" id="errorText">Ошибки: 0</span>
+        <button onclick="">Меню</button>
+        <button onclick="hint()">Подсказка</button>
+        <button onclick="playAgain()">Рестарт</button>
+        <span class="text right" id="timerText">0:00</span>
+        
+    </header>
+    <main>
+        <img id='tree' src='Novogodnyaya-elka2.png'>
+        <button class='light' onclick="change(this);" id='b1'> </button>
+        <button class='light' onclick="change(this);" id='b2'> </button>
+        <button class='light' onclick="change(this);" id='b3'> </button>
+        <button class='light' onclick="change(this);" id='b4'> </button>
+        <button class='light' onclick="change(this);" id='b5'> </button>
+        <button class='light' onclick="change(this);" id='b6'> </button>
+        <button class='light' onclick="change(this);" id='b7'> </button>
+        <button class='light' onclick="change(this);" id='b8'> </button>
+        <button class='light' onclick="change(this);" id='b9'> </button>
+        <button class='light' onclick="change(this);" id='b10'> </button>
+        <button class='light' onclick="change(this);" id='b11'> </button>
+    </main>
+
+    <dialog id="dialog" onclick="this.close()">
+        <h1>Мини-игра пройдена!</h1>
+        <h2>Ваш результат</h2>
+        <p>Время - <span id="resultTimer">00:00</span></p>
+        <p>Количество ошибок - <span id="resultError">0</span></p>
+    </dialog>
+    <script src="script.js"></script>
+ </body>
+</html>
