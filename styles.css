@@ -1,0 +1,31 @@
+html {
+    background-image: url('Images/background.jpg');
+    background-color: rgba(32, 50, 88, 0.5);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+header {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(32, 50, 88, 0.5);
+}
+
+.buttonHeader {
+    margin: 1.3vmax;
+    /* padding: 0 1.5vmax; */
+    width: 10vmax;
+    height: 10vmax;
+    font-size: 2.6vmax;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: rgb(20, 35, 68);
+    color: white;
+    border-width: 0.1vmax;
+}
