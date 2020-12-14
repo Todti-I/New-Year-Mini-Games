@@ -149,7 +149,7 @@ function makeStep(event) {
                 star.classList.add('starWin');
                 star.style.left = '44.5%';
                 star.style.top = '1.5%';
-                resultTimer.textContent = timerText.textContent;
+                resultTimer.textContent = `Время - ${timerText.textContent}`;
                 resultError.textContent = errorText.textContent;
                 labyrinth.classList.add('hidden');
             }, 500);
